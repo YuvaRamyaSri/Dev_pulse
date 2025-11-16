@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Daily Log | DevPulse</title>
+    <style>
+        body { font-family: 'Poppins'; background: linear-gradient(135deg,#001f3f,#000); color:white; text-align:center; }
+        form { display:inline-block; margin-top:40px; background:rgba(255,255,255,0.05); padding:25px; border-radius:12px; }
+        input, textarea, select { width:250px; margin:8px; padding:8px; border-radius:6px; border:none; background:#1e1e2f; color:white; }
+        button { padding:8px 18px; border:none; border-radius:8px; background:linear-gradient(90deg,#007bff,#00c6ff); color:white; cursor:pointer; }
+    </style>
+</head>
+<body>
+<h2>Add Your Daily Log</h2>
+<form th:action="@{/logs/add}" method="post" th:object="${dailyLog}">
+    <input type="text" th:field="*{taskDescription}" placeholder="What did you work on?" required><br>
+    <input type="number" th:field="*{focusScore}" placeholder="Focus score (1–10)" min="1" max="10" required><br>
+    <textarea th:field="*{notes}" placeholder="Notes or blockers"></textarea><br>
+    <button type="submit">Save Log</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DevPulse | Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==== GENERAL BODY ==== */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #001f3f, #000000);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==== LOGIN BOX ==== */
+        .login-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            padding: 40px 50px;
+            border-radius: 18px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            width: 380px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .login-container:hover {
+            transform: scale(1.02);
+        }
+
+        /* ==== BRAND HEADER ==== */
+        .brand {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-direction: column;
+        }
+
+        .brand img {
+            width: 180px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 10px #00c6ff);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .brand img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px #00c6ff);
+        }
+
+        .brand-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ==== FORM ==== */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .input-group {
+            width: 100%;
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 13px;
+            color: #9aa0a6;
+        }
+
+        .input-group input {
+            width: 80%;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 8px;
+            background-color: #1e1e2f;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: #9aa0a6;
+        }
+
+        /* ==== BUTTON ==== */
+        .btn {
+            width: 100%;
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(90deg, #0056b3, #0091ff);
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <div class="brand">
+        <!-- SVG Logo -->
+        <img src="/images/devpulse-logo.svg" alt="DevPulse Logo">
+    </div>
+
+    <form action="/login" method="post">
+        <div class="input-group">
+            <i class="fa-solid fa-user"></i>
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
+
+        <button class="btn" type="submit">
+            <i class="fa-solid fa-sign-in-alt"></i> Login
+        </button>
+          <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+    </form>
+    
+</div>
+</body>
+</html>

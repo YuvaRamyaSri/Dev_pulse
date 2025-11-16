@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>DevPulse | Weekly Summary</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="card">
+        <h3>📊 Weekly Summary Overview</h3>
+        <div style="display:flex;justify-content:space-around;flex-wrap:wrap;margin-top:20px;">
+            <div class="summary-box"><h4>Average Focus</h4><p th:text="${averageFocus} + '/10'"></p></div>
+            <div class="summary-box"><h4>Productive Days (≥7)</h4><p th:text="${productiveDays}"></p></div>
+            <div class="summary-box"><h4>Most Productive Day</h4><p th:text="${mostProductiveDay}"></p></div>
+            <div class="summary-box"><h4>Least Focused Day</h4><p th:text="${leastFocusedDay}"></p></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>📈 Focus Trend (Past 7 Days)</h3>
+        <canvas id="focusChart" width="400" height="180"></canvas>
+    </div>
+
+    <div class="card">
+        <h3>🧠 Personalized Insights</h3>
+        <div class="insight-box" th:each="tip : ${insights}">
+            <p th:text="${tip}"></p>
+        </div>
+    </div>
+
+    <style>
+        .summary-box { background: rgba(255,255,255,0.08); padding:20px; border-radius:12px; width:200px; text-align:center; margin:10px; }
+        .summary-box h4 { color:#00c6ff; margin-bottom:10px; }
+        .summary-box p { font-size:20px; font-weight:bold; }
+
+        .insight-box {
+            background: rgba(0,198,255,0.1);
+            border-left: 4px solid #00c6ff;
+            margin: 10px 0;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,198,255,0.3);
+        }
+        .insight-box p {
+            margin: 0;
+            color: #e0e0e0;
+            font-size: 15px;
+        }
+    </style>
+
+    <script th:inline="javascript">
+        const dates = /*[[${dates}]]*/ [];
+        const scores = /*[[${focusTrend}]]*/ [];
+
+        const ctx = document.getElementById('focusChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Focus Score',
+                    data: scores,
+                    borderColor: '#00c6ff',
+                    backgroundColor: 'rgba(0,198,255,0.2)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true, max: 10, ticks: { color: 'white' } },
+                    x: { ticks: { color: 'white' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                },
+                plugins: { legend: { labels: { color: 'white' } } }
+            }
+        });
+    </script>
+</section>
+</body>
+</html>

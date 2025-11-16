@@ -1,0 +1,23 @@
+<svg width="220" height="60" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pulseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00c6ff"/>
+      <stop offset="100%" stop-color="#001f3f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Code Brackets -->
+  <text x="10" y="40" font-family="Orbitron, monospace" font-size="36" fill="url(#pulseGradient)">&lt;</text>
+  <text x="190" y="40" font-family="Orbitron, monospace" font-size="36" fill="url(#pulseGradient)">&gt;</text>
+
+  <!-- Pulse Line -->
+  <path d="M40 30 L70 30 L80 10 L90 50 L100 30 L140 30 L150 20 L160 40 L170 30 L180 30"
+        stroke="url(#pulseGradient)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <animate attributeName="stroke-dasharray" from="0,200" to="200,0" dur="2s" repeatCount="indefinite" />
+  </path>
+
+  <!-- Text -->
+  <text x="50" y="55" font-family="Poppins, sans-serif" font-size="14" fill="url(#pulseGradient)" letter-spacing="2">
+    DevPulse
+  </text>
+</svg>
