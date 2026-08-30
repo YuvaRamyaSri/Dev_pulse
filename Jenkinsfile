@@ -6,22 +6,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'echo Building application'
-                bat 'java -version'
-                bat 'git --version'
-                bat 'mvn -version'
+                bat 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running Tests'
+                bat 'mvn test'
             }
         }
 
-        stage('Deploy') {
+        stage('Package') {
             steps {
-                echo 'Deploying Application'
+                bat 'mvn package'
             }
         }
 
