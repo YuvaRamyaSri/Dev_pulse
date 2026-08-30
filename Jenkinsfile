@@ -9,6 +9,7 @@ pipeline {
                 bat 'echo Building application'
                 bat 'java -version'
                 bat 'git --version'
+                bat 'mvn -version'
             }
         }
 
