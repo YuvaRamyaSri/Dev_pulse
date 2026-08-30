@@ -1,21 +1,28 @@
 pipeline {
+
     agent any
 
     stages {
+
         stage('Build') {
             steps {
-                echo 'Building the Application'
+                bat 'echo Building application'
+                bat 'java -version'
+                bat 'git --version'
             }
         }
-        stage('Test'){
-            steps{
+
+        stage('Test') {
+            steps {
                 echo 'Running Tests'
             }
         }
-        stage('Deploy'){
-            steps{
-                echo 'Deploying the Application'
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying Application'
             }
         }
+
     }
 }
