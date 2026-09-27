@@ -38,6 +38,11 @@ pipeline {
                 bat 'docker build -t devpulse:1.0 .'
             }
         }
+        stage('Docker Run') {
+            steps {
+                bat 'docker run -d -p 8080:8080 --name devpulse-container devpulse:1.0'
+            }
+        }
         stage('Archive') {
             steps {
                 archiveArtifacts artifacts: 'target/*.war'
