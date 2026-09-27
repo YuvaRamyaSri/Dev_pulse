@@ -44,7 +44,7 @@ pipeline {
             steps {
                 bat '''
                 docker rm -f %CONTAINER_NAME% 2>nul || echo No existing container found
-                docker run -d -p 8081:8080 --name %CONTAINER_NAME% %DOCKER_IMAGE%
+                docker run -d -p 8081:9090 --name %CONTAINER_NAME% %DOCKER_IMAGE%
                 '''
             }
         }
