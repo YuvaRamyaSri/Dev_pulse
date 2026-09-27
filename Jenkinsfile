@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                bat 'docker build -t devpulse:1.0 .'
+                bat 'docker build -t devpulse:%BUILD_NUMBER% .'
             }
         }
        stage('Docker Run') {
