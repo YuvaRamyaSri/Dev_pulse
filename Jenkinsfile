@@ -33,7 +33,11 @@ pipeline {
                 bat 'mvn package'
             }
         }
-
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t devpulse:1.0 .'
+            }
+        }
         stage('Archive') {
             steps {
                 archiveArtifacts artifacts: 'target/*.war'
