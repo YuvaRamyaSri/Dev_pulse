@@ -38,9 +38,12 @@ pipeline {
                 bat 'docker build -t devpulse:1.0 .'
             }
         }
-        stage('Docker Run') {
+       stage('Docker Run') {
             steps {
-                bat 'docker run -d -p 8080:8080 --name devpulse-container devpulse:1.0'
+                bat '''
+                docker rm -f %CONTAINER_NAME% 2>nul || echo No existing container found
+                docker run -d -p 8081:8080 --name %CONTAINER_NAME% %DOCKER_IMAGE%
+                '''
             }
         }
         stage('Archive') {
