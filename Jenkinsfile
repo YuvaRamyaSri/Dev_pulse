@@ -4,6 +4,8 @@ pipeline {
     environment {
         APP_NAME = 'devpulse'
         APP_VERSION = '1.0.0'
+        DOCKER_IMAGE = 'devpulse:1.0'
+        CONTAINER_NAME = 'devpulse-container'
     }
     parameters {
     choice(
